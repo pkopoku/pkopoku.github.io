@@ -1,75 +1,256 @@
-<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>pkopoku.github.io by pkopoku</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/pkopoku">View On GitHub</a></li>
-        </nav>
-      </div><!-- end header -->
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
 
-    <div class="wrapper">
+    main {
+      flex: 1 0 auto;
+    }
 
-      <section>
-        <div id="title">
-          <h1>pkopoku.github.io</h1>
-          <p>Bad Wolf</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/pkopoku">pkopoku</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+    body {
+      background: #fff;
+    }
+
+    .input-field input[type=date]:focus + label,
+    .input-field input[type=text]:focus + label,
+    .input-field input[type=email]:focus + label,
+    .input-field input[type=password]:focus + label {
+      color: #e91e63;
+    }
+
+    .input-field input[type=date]:focus,
+    .input-field input[type=text]:focus,
+    .input-field input[type=email]:focus,
+    .input-field input[type=password]:focus {
+      border-bottom: 2px solid #e91e63;
+      box-shadow: none;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="section"></div>
+  <main>
+    <center>
+      
+      <div class="section"></div>
+
+      <h5 class="indigo-text">Jarvis Simulation</h5>
+      <h6 class="indigo-text">General Model</h6>
+      <div class="section"></div>
+
+      <div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+
+
+
+          <form class="col s12" method="post">
+            <div class='row'>
+              <div class='col s12'>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='input-field col s3'>
+                <select name = 'ip_ship_same' id = 'iss'>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Same</option>
+      <option value="0">Different</option>
+    </select>
+    <label>IP/Shipping</label>
+              </div>
+
+              <div class='input-field col s3'>
+                <select name = 'isPcSame1' id = 'ips1'>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Same</option>
+      <option value="0">Different</option>
+    </select>
+    <label>Shipping/Billing PC Match</label>
+              </div>
+
+              <div class='input-field col s3'>
+                <select name = 'isPcSame2' id = 'ips2'>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Same</option>
+      <option value="0">Different</option>
+    </select>
+    <label>Shipping PC/PC Match</label>
+              </div>
+
+              <div class='input-field col s3'>
+                <select name = 'reg_ship_same' id = 'rss'>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Same</option>
+      <option value="0">Different</option>
+    </select>
+    <label>Registration/Shipping Address Match</label>
+              </div>
+            </div>
+
+<div class='row'>
+              <div class='input-field col s4'>
+                <select name = 'Category_Level_2' id = 'cl2'>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Games</option>
+      <option value="2">Clothing/Footwear</option>
+      <option value="3">Other</option>
+    </select>
+    <label>Category Level 2</label>
+              </div>
+
+              <div class='input-field col s4'>
+                <select name = 'delivery' id = 'deli'>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">International</option>
+      <option value="0">Other</option>
+    </select>
+    <label>Delivery Type</label>
+              </div>
+
+            
+
+              <div class='input-field col s4'>
+                <select name = 'isPaypal' id='payp'>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </select>
+    <label>Is Paypal?</label>
+              </div>
+            </div>
+
+<div class='row'>
+              <div class='input-field col s6'>
+                <select name = 'mkey_mail_affil' id = 'aff'>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Email/Affiliate</option>
+      <option value="0">Not Email/Affiliate</option>
+    </select>
+    <label>Site Access Type</label>
+              </div>
+
+              <div class='input-field col s6'>
+                <select name = 'mkey_direct_org' id = 'dir'>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Direct/Organic</option>
+      <option value="0">Not Direct/Organic</option>
+    </select>
+    <label>Site Access Type 2</label>
+              </div>
+
+            
+
+            </div>
+
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type='number' name='Active_Age' id='age' min = '0' />
+                <label for='age'>Enter Active Age</label>
+              </div>
+              
+            </div>
+
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type='number' name='Product_Charge_Price' id='cost' min = '0' />
+                <label for='cost'>Enter Price of Item</label>
+              </div>
+              
+            </div>
+
+            <br />
+            <center>
+              <div class='row'>
+               <a name='btn' id = 'prob_btn' class='col s12 btn btn-large waves-effect indigo'>Check Probability</a>
+               <!-- <a class="waves-effect waves-light btn" data-target="modal" name='btn' id = 'prob_btn' href="#modal1">Check Probability</a> -->
+              </div>
+            </center>
+          </form>
         </div>
+      </div>
+      <a href="#!">Datanauts</a>
+    </center>
 
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+    <div class="section"></div>
+    <div class="section"></div>
+  </main>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/initialize.js"></script>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+  <script type="text/javascript">
+  
+//only if vars are 1, do they have an effect.
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+$( "#prob_btn" ).click(function() {
+  
+  pcp = parseInt($('#cost').val());
+ipShipSame = parseInt($('#iss').val());
+isPcSame2 = parseInt($('#ips2').val());
+regShipSame = parseInt($('#rss').val());
+isPcSame1 = parseInt($('#ips1').val());
+activeAge = parseInt($('#age').val());
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+c = parseInt($('#cl2').val());
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+if(c == 1){
+  cLevel22 = 0;
+  cLevel23 = 0;
+} else if(c == 2){
+  cLevel22 = 1;
+  cLevel23 = 0;
+} else {
+  cLevel22 = 0;
+  cLevel23 = 1;
+}
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+deliv = parseInt($('#deli').val());;
+payPal = parseInt($('#payp').val());;
+affil = parseInt($('#aff').val());;
+direct = parseInt($('#dir').val());;
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+console.log("pcp = " + pcp);   
+console.log("ipShipSame = " + ipShipSame);   
+console.log("isPcSame2 = " + isPcSame2);   
+console.log("regShipSame = " + regShipSame);   
+console.log("isPcSame1 = " + isPcSame1);   
+console.log("activeAge = " + activeAge);   
+console.log("cLevel22 = " + cLevel22);   
+console.log("cLevel23 = " + cLevel23);   
+console.log("deliv = " + deliv);   
+console.log("payPal = " + payPal);   
+console.log("affil = " + affil);   
+console.log("direct = " + direct);
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+var expression = -(-1.537339 + (0.001653 * pcp) + (-0.616555 * ipShipSame) + 
+                    (0.068999 * isPcSame2) + (2.571091 * regShipSame) + (-0.715734 * isPcSame1) +
+                    (-0.028906 * activeAge) + (-0.225677 * cLevel22) + (-1.461499 * cLevel23) +
+                    (1.628873 * deliv) + (-18.164540 * payPal) + (-0.837966 * affil) +
+                    (1.242282 * direct));
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+var p = 1 / (1 + Math.pow(Math.E, expression)) ;  
+console.log("p = " + p);
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
+Materialize.toast('Probability of Fraud = ' + p.toFixed(5), 4000)
+  //alert( Math.log(p/(1-p)) );
+});
 
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
+  </script>
+
+</body>
+
 </html>
