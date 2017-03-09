@@ -162,13 +162,13 @@
             </div>
 
 
-            <div class='row'>
+           <!--  <div class='row'>
               <div class='input-field col s12'>
                 <input class='validate' type='number' name='Product_Charge_Price' id='cost' min = '0' />
                 <label for='cost'>Enter Price of Item</label>
               </div>
               
-            </div>
+            </div> -->
 
             <br />
             <center>
@@ -197,7 +197,7 @@
 
 $( "#prob_btn" ).click(function() {
   
-  pcp = parseInt($('#cost').val());
+  //pcp = parseInt($('#cost').val());
 ipShipSame = parseInt($('#iss').val());
 isPcSame2 = parseInt($('#ips2').val());
 regShipSame = parseInt($('#rss').val());
@@ -236,11 +236,11 @@ direct = parseInt($('#dir').val());;
 // console.log("direct = " + direct);
 
 
-var expression = -(-1.537339 + (0.001653 * pcp) + (-0.616555 * ipShipSame) + 
-                    (0.068999 * isPcSame2) + (2.571091 * regShipSame) + (-0.715734 * isPcSame1) +
-                    (-0.028906 * activeAge) + (-0.225677 * cLevel22) + (-1.461499 * cLevel23) +
-                    (1.628873 * deliv) + (-18.164540 * payPal) + (-0.837966 * affil) +
-                    (1.242282 * direct));
+var expression = -(-1.402377 + (-0.608205 * ipShipSame) + 
+                    (0.073038 * isPcSame2) + (2.541786 * regShipSame) + (-0.741159 * isPcSame1) +
+                    (-0.029382 * activeAge) + (-0.275324 * cLevel22) + (-1.516443 * cLevel23) +
+                    (1.645738 * deliv) + (-18.157262 * payPal) + (-0.848849 * affil) +
+                    (1.242251 * direct));
 
 var p = 1 / (1 + Math.pow(Math.E, expression)) ;  
 console.log("p = " + p);
