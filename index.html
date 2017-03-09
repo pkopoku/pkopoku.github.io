@@ -192,12 +192,9 @@
   <script type="text/javascript" src="js/initialize.js"></script>
 
   <script type="text/javascript">
-  
-//only if vars are 1, do they have an effect.
 
 $( "#prob_btn" ).click(function() {
   
-  //pcp = parseInt($('#cost').val());
 ipShipSame = parseInt($('#iss').val());
 isPcSame2 = parseInt($('#ips2').val());
 regShipSame = parseInt($('#rss').val());
@@ -222,20 +219,6 @@ payPal = parseInt($('#payp').val());;
 affil = parseInt($('#aff').val());;
 direct = parseInt($('#dir').val());;
 
-// console.log("pcp = " + pcp);   
-// console.log("ipShipSame = " + ipShipSame);   
-// console.log("isPcSame2 = " + isPcSame2);   
-// console.log("regShipSame = " + regShipSame);   
-// console.log("isPcSame1 = " + isPcSame1);   
-// console.log("activeAge = " + activeAge);   
-// console.log("cLevel22 = " + cLevel22);   
-// console.log("cLevel23 = " + cLevel23);   
-// console.log("deliv = " + deliv);   
-// console.log("payPal = " + payPal);   
-// console.log("affil = " + affil);   
-// console.log("direct = " + direct);
-
-
 var expression = -(-1.402377 + (-0.608205 * ipShipSame) + 
                     (0.073038 * isPcSame2) + (2.541786 * regShipSame) + (-0.741159 * isPcSame1) +
                     (-0.029382 * activeAge) + (-0.275324 * cLevel22) + (-1.516443 * cLevel23) +
@@ -246,7 +229,7 @@ var p = 1 / (1 + Math.pow(Math.E, expression)) ;
 console.log("p = " + p);
 
 Materialize.toast('Probability of Fraud = ' + p.toFixed(5), 4000)
-  //alert( Math.log(p/(1-p)) );
+
 });
 
   </script>
