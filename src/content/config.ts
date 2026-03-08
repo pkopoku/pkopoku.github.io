@@ -9,6 +9,8 @@ const projects = defineCollection({
     year: z.number(),
     url: z.string().url().optional(),
     repo: z.string().url().optional(),
+    image: z.string().optional(),
+    imageAttribution: z.string().optional(),
     featured: z.boolean().default(false),
     order: z.number().default(99),
   }),
@@ -32,6 +34,7 @@ const photoCollections = defineCollection({
     slug: z.string(),
     description: z.string(),
     coverImage: z.string(),
+    coverImagePosition: z.string().default('center'),
     order: z.number().default(99),
     photos: z.array(
       z.object({

@@ -1,49 +1,117 @@
 ---
 import SWELayout from '../../layouts/SWELayout.astro';
+
+const experience = [
+  {
+    company: 'Bloomberg LP',
+    location: 'London, United Kingdom',
+    roles: [
+      {
+        title: 'Senior Software Engineer — Multi-Asset Indices',
+        period: '2022 – present',
+        responsibility: 'Building and maintaining Strategy Index calculators for 3rd party clients.',
+        impact: 'Designed a fluent framework for Multi-Asset Index creation that made product teams <strong>much</strong> faster at self-serving Indices.',
+      },
+    ],
+  },
+  {
+    company: 'FactSet Research Systems',
+    location: 'London, United Kingdom',
+    roles: [
+      {
+        title: 'Software Engineer L3 — User Configurable Feeds',
+        period: '2020 – 2022',
+        responsibility: 'Designed and built new infrastructure to unify FactSet\'s various data feed products under one standardised platform.',
+        impact: 'Managed a summer intern project expanding access to FactSet data via GraphQL and AWS, from conception through to delivery.',
+      },
+      {
+        title: 'Software Engineer L2 — Benchmark Data Feeds',
+        period: '2018 – 2020',
+        responsibility: 'Created and managed RESTful APIs on .NET/C#, including a full migration of the Benchmark Data Feed API to .NET Core.',
+        impact: 'Migrated the entire codebase from Perforce to Git and established a CI pipeline via Jenkins — modernising the team\'s development end-to-end workflow.',
+      },
+    ],
+  },
+  {
+    company: 'Vodafone',
+    location: 'Accra, Ghana',
+    roles: [
+      {
+        title: 'Solutions Specialist — Products & Tariffs',
+        period: '2014 – 2016',
+        responsibility: 'Built the customer loyalty management system for Vodafone Ghana\'s largest ever nationwide promotion, serving 6 million subscribers.',
+        impact: 'Reduced promotion subscription failure rate by 66% through targeted failover mechanisms and geo-redundant architecture.',
+      },
+    ],
+  },
+  {
+    company: 'Nandimobile',
+    location: 'Accra, Ghana',
+    roles: [
+      {
+        title: 'Software Developer',
+        period: '2013 – 2014',
+        responsibility: 'Maintained and extended marketing campaign software; developed Android applications for consumer and healthcare markets.',
+        impact: 'Shipped the Healthline mobile app for Vodafone Ghana — it won a CIMG award and reached 10,000 downloads.',
+      },
+    ],
+  },
+];
+
+const skills = [
+  { category: 'Languages', items: ['Python', 'C#'] },
+  { category: 'Frameworks', items: ['.NET / .NET Core', 'Entity Framework', 'Flask'] },
+  { category: 'Data', items: ['MSSQL', 'PostgreSQL', 'GraphQL', 'Scikit-Learn'] },
+  { category: 'Infrastructure', items: ['Jenkins', 'TeamCity', 'Octopus Deploy', 'Git', 'Bash'] },
+  { category: 'Practices', items: ['REST API design', 'SOA', 'CI/CD', 'Time Series Analysis'] },
+  { category: 'Interests', items: ['Machine Learning', 'Hardware / IoT', 'Data Visualisation'] },
+];
 ---
 
 <SWELayout title="Résumé" description="Experience, skills, and background.">
   <section class="mb-16">
     <p class="font-mono text-xs mb-4" style="color: var(--color-gold);">/swe/resume</p>
-    <h1 class="font-serif text-6xl font-black mb-4" style="color: var(--color-paper);">Résumé</h1>
-    <a
-      href="/resume.pdf"
-      class="font-mono text-xs px-4 py-2 border inline-block transition-colors hover:bg-[var(--color-gold)] hover:text-[var(--color-ink)] hover:border-[var(--color-gold)]"
-      style="border-color: var(--color-paper-dim); color: var(--color-paper-dim);"
-    >
-      download PDF ↓
-    </a>
+    <h1 class="font-serif text-6xl font-black" style="color: var(--color-paper);">Résumé</h1>
   </section>
 
   <hr class="section-divider" />
 
   <!-- Experience -->
   <section class="mb-20">
-    <h2 class="font-mono text-xs uppercase tracking-widest mb-10" style="color: var(--color-paper-dim);">
+    <h2 class="font-mono text-xs uppercase tracking-widest mb-12" style="color: var(--color-paper-dim);">
       Experience
     </h2>
 
-    <div class="flex flex-col gap-12">
-      <!-- Placeholder role — fill in your own -->
-      <div class="grid grid-cols-[1fr_auto] gap-8">
+    <div class="flex flex-col gap-16">
+      {experience.map((place) => (
         <div>
-          <h3 class="font-serif text-2xl font-bold mb-1" style="color: var(--color-paper);">
-            Senior Software Engineer
-          </h3>
-          <p class="font-mono text-sm mb-4" style="color: var(--color-gold);">Company Name</p>
-          <ul class="flex flex-col gap-2">
-            <li class="text-sm leading-relaxed" style="color: var(--color-paper-dim);">
-              — Describe a key responsibility or achievement here.
-            </li>
-            <li class="text-sm leading-relaxed" style="color: var(--color-paper-dim);">
-              — Another impactful bullet point.
-            </li>
-          </ul>
+          <!-- Company header -->
+          <div class="flex items-baseline justify-between mb-8 pb-4 border-b" style="border-color: var(--color-ink-mid);">
+            <h3 class="font-serif text-2xl font-bold" style="color: var(--color-paper);">{place.company}</h3>
+            <span class="font-mono text-xs shrink-0 ml-6" style="color: var(--color-paper-dim);">{place.location}</span>
+          </div>
+
+          <!-- Roles -->
+          <div class="flex flex-col gap-10 pl-0 md:pl-4">
+            {place.roles.map((role) => (
+              <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-2 md:gap-8">
+                <div>
+                  <p class="font-mono text-xs mb-3" style="color: var(--color-gold);">{role.title}</p>
+                  <ul class="flex flex-col gap-3">
+                    <li class="text-sm leading-relaxed pl-4 border-l" style="color: var(--color-paper-dim); border-color: var(--color-ink-mid);">
+                      {role.responsibility}
+                    </li>
+                    <li class="text-sm leading-relaxed pl-4 border-l" style="color: var(--color-paper); border-color: var(--color-gold);" set:html={role.impact} />
+                  </ul>
+                </div>
+                <span class="font-mono text-xs shrink-0 md:pt-0.5" style="color: var(--color-paper-dim);">
+                  {role.period}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
-        <span class="font-mono text-xs shrink-0 pt-1" style="color: var(--color-paper-dim);">
-          2022 – present
-        </span>
-      </div>
+      ))}
     </div>
   </section>
 
@@ -55,10 +123,14 @@ import SWELayout from '../../layouts/SWELayout.astro';
       Skills
     </h2>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-px" style="background-color: var(--color-ink-mid);">
-      {['Languages', 'Frameworks', 'Infrastructure', 'Databases', 'Tools', 'Other'].map((category) => (
+      {skills.map((group) => (
         <div class="p-6" style="background-color: var(--color-ink);">
-          <p class="font-mono text-xs mb-3" style="color: var(--color-gold);">{category}</p>
-          <p class="text-sm" style="color: var(--color-paper-dim);">Add your skills here</p>
+          <p class="font-mono text-xs mb-4" style="color: var(--color-gold);">{group.category}</p>
+          <ul class="flex flex-col gap-1.5">
+            {group.items.map((item) => (
+              <li class="text-sm" style="color: var(--color-paper-dim);">{item}</li>
+            ))}
+          </ul>
         </div>
       ))}
     </div>
@@ -71,14 +143,28 @@ import SWELayout from '../../layouts/SWELayout.astro';
     <h2 class="font-mono text-xs uppercase tracking-widest mb-10" style="color: var(--color-paper-dim);">
       Education
     </h2>
-    <div class="grid grid-cols-[1fr_auto] gap-8">
-      <div>
-        <h3 class="font-serif text-2xl font-bold mb-1" style="color: var(--color-paper);">
-          Degree, Field of Study
-        </h3>
-        <p class="font-mono text-sm" style="color: var(--color-gold);">University Name</p>
+    <div class="flex flex-col gap-8">
+      <div class="grid grid-cols-[1fr_auto] gap-8 items-start">
+        <div>
+          <h3 class="font-serif text-2xl font-bold mb-1" style="color: var(--color-paper);">
+            Master of Data Science
+          </h3>
+          <p class="font-mono text-xs mb-2" style="color: var(--color-gold);">Lancaster University</p>
+          <p class="text-sm" style="color: var(--color-paper-dim);">Optimising energy systems — predicting room temperature to prevent costly low-to-high heating gradients across campus.</p>
+        </div>
+        <span class="font-mono text-xs shrink-0 pt-1" style="color: var(--color-paper-dim);">2016 – 2017</span>
       </div>
-      <span class="font-mono text-xs shrink-0 pt-1" style="color: var(--color-paper-dim);">Year</span>
+
+      <div class="grid grid-cols-[1fr_auto] gap-8 items-start">
+        <div>
+          <h3 class="font-serif text-2xl font-bold mb-1" style="color: var(--color-paper);">
+            Bachelor of Computer Science
+          </h3>
+          <p class="font-mono text-xs mb-2" style="color: var(--color-gold);">Kwame Nkrumah University of Science and Technology</p>
+          <p class="text-sm" style="color: var(--color-paper-dim);">Building for screens — web and mobile application development, from first principles to shipped product.</p>
+        </div>
+        <span class="font-mono text-xs shrink-0 pt-1" style="color: var(--color-paper-dim);">2009 – 2013</span>
+      </div>
     </div>
   </section>
 </SWELayout>

@@ -9,12 +9,27 @@ const collections = (await getCollection('collections'))
 <PhotoLayout title="Photos" description="Photography by pkopoku — concerts, portraits, travel.">
   <!-- Hero text -->
   <section class="mb-16">
-    <h1 class="font-serif text-6xl md:text-8xl font-black italic leading-none mb-4" style="color: var(--color-paper);">
+    <h1 class="font-serif text-6xl md:text-8xl font-black italic leading-none mb-8" style="color: var(--color-paper);">
       Photos
     </h1>
-    <p class="font-mono text-sm max-w-sm" style="color: var(--color-paper-dim);">
-      Light and shadow — a chiaroscuro approach to the world.
-    </p>
+    <div class="max-w-xl flex flex-col gap-4">
+      <p class="text-base leading-relaxed" style="color: var(--color-paper-dim);">
+        I see the world in scenes. The amber mystery of a fog-drenched street. A silhouette dissolving
+        into golden hour. The raw electricity of a concert caught mid-motion — the frame that belongs
+        on a screen, not a feed.
+      </p>
+      <p class="text-base leading-relaxed" style="color: var(--color-paper-dim);">
+        The work spans travel, portraits, editorial, and events. The thread through all of it is
+        atmosphere: dramatic light, bold shadow, colour that lands before the mind catches up.
+      </p>
+      <p class="text-base leading-relaxed" style="color: var(--color-paper-dim);">
+        If you want something that stops the scroll and stays —&nbsp;<a
+          href="https://www.instagram.com/pkopoku"
+          class="border-b transition-colors"
+          style="color: var(--color-paper); border-color: var(--color-gold);"
+        >let's make it</a>.
+      </p>
+    </div>
   </section>
 
   <!-- Collections grid -->
@@ -30,6 +45,7 @@ const collections = (await getCollection('collections'))
           src={col.data.coverImage}
           alt={col.data.title}
           class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-60"
+          style={`object-position: ${col.data.coverImagePosition};`}
           loading="lazy"
         />
 
