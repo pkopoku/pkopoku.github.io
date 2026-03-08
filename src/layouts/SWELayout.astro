@@ -1,0 +1,64 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const fullTitle = `${title} — pkopoku`;
+---
+
+<BaseLayout title={fullTitle} description={description}>
+  <div class="min-h-screen flex flex-col">
+    <!-- Nav -->
+    <nav class="sticky top-0 z-50 border-b" style="border-color: var(--color-ink-mid); background-color: var(--color-ink);">
+      <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+        <a href="/" class="font-mono text-sm" style="color: var(--color-paper-dim);">
+          pkopoku
+        </a>
+        <div class="flex items-center gap-8">
+          <a href="/swe" class="font-mono text-sm hover:text-gold transition-colors" style="color: var(--color-paper);">
+            work
+          </a>
+          <a href="/swe/projects" class="font-mono text-sm transition-colors" style="color: var(--color-paper-dim);">
+            projects
+          </a>
+          <a href="/swe/writing" class="font-mono text-sm transition-colors" style="color: var(--color-paper-dim);">
+            writing
+          </a>
+          <a href="/swe/resume" class="font-mono text-sm transition-colors" style="color: var(--color-paper-dim);">
+            resume
+          </a>
+          <a
+            href="/photos"
+            class="font-mono text-xs px-3 py-1 border transition-colors"
+            style="border-color: var(--color-ink-mid); color: var(--color-paper-dim);"
+          >
+            photos →
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="flex-1 max-w-5xl mx-auto w-full px-6 py-16">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t py-8 px-6" style="border-color: var(--color-ink-mid);">
+      <div class="max-w-5xl mx-auto flex items-center justify-between">
+        <span class="font-mono text-xs" style="color: var(--color-paper-dim);">
+          © {new Date().getFullYear()} pkopoku
+        </span>
+        <div class="flex gap-6">
+          <a href="https://github.com/pkopoku" class="font-mono text-xs transition-colors" style="color: var(--color-paper-dim);">
+            github
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>

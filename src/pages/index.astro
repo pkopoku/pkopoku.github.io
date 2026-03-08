@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="pkopoku" description="Software engineer and photographer.">
+  <main
+    class="min-h-screen flex flex-col items-center justify-center px-6"
+    style="background-color: var(--color-ink);"
+  >
+    <!-- Name -->
+    <div class="text-center mb-20">
+      <h1
+        class="font-serif text-7xl md:text-9xl font-black tracking-tight mb-4"
+        style="color: var(--color-paper);"
+      >
+        pkopoku
+      </h1>
+      <p class="font-mono text-sm" style="color: var(--color-paper-dim);">
+        software engineer &nbsp;·&nbsp; photographer
+      </p>
+    </div>
+
+    <!-- Two doors -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 gap-px w-full max-w-3xl"
+      style="background-color: var(--color-ink-mid);"
+    >
+      <a
+        href="/swe"
+        class="group flex flex-col justify-between p-10 transition-colors duration-300 hover:bg-[var(--color-ink-soft)]"
+        style="background-color: var(--color-ink);"
+      >
+        <span class="font-mono text-xs mb-12" style="color: var(--color-paper-dim);">01</span>
+        <div>
+          <h2 class="font-serif text-4xl font-bold mb-3" style="color: var(--color-paper);">Work</h2>
+          <p class="font-mono text-sm" style="color: var(--color-paper-dim);">
+            Projects, writing, résumé
+          </p>
+        </div>
+        <span class="font-mono text-xs mt-10" style="color: var(--color-gold);">/swe →</span>
+      </a>
+
+      <a
+        href="/photos"
+        class="group flex flex-col justify-between p-10 transition-colors duration-300 hover:bg-[var(--color-ink-soft)]"
+        style="background-color: var(--color-ink);"
+      >
+        <span class="font-mono text-xs mb-12" style="color: var(--color-paper-dim);">02</span>
+        <div>
+          <h2 class="font-serif text-4xl font-bold mb-3" style="color: var(--color-paper);">Photos</h2>
+          <p class="font-mono text-sm" style="color: var(--color-paper-dim);">
+            Concerts, portraits, travel
+          </p>
+        </div>
+        <span class="font-mono text-xs mt-10" style="color: var(--color-gold);">/photos →</span>
+      </a>
+    </div>
+  </main>
+</BaseLayout>

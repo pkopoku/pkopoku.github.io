@@ -1,0 +1,43 @@
+---
+import SWELayout from '../../../layouts/SWELayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('writing'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<SWELayout title="Writing" description="Thoughts on engineering, craft, and building things.">
+  <section class="mb-16">
+    <p class="font-mono text-xs mb-4" style="color: var(--color-gold);">/swe/writing</p>
+    <h1 class="font-serif text-6xl font-black" style="color: var(--color-paper);">Writing</h1>
+  </section>
+
+  <div class="flex flex-col divide-y" style="border-color: var(--color-ink-mid);">
+    {posts.map((post) => (
+      <a
+        href={`/swe/writing/${post.slug}`}
+        class="group grid grid-cols-[1fr_auto] gap-8 py-8 transition-colors duration-200"
+      >
+        <div>
+          <h2 class="font-serif text-2xl font-bold mb-2 group-hover:text-[var(--color-gold)] transition-colors" style="color: var(--color-paper);">
+            {post.data.title}
+          </h2>
+          <p class="text-sm leading-relaxed" style="color: var(--color-paper-dim);">
+            {post.data.description}
+          </p>
+          {post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-4">
+              {post.data.tags.map((tag) => (
+                <span class="font-mono text-xs" style="color: var(--color-paper-dim);">#{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        <span class="font-mono text-xs shrink-0 pt-1" style="color: var(--color-paper-dim);">
+          {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+        </span>
+      </a>
+    ))}
+  </div>
+</SWELayout>

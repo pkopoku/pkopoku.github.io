@@ -1,0 +1,46 @@
+---
+import SWELayout from '../../../layouts/SWELayout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<SWELayout title="Projects" description="All projects.">
+  <section class="mb-16">
+    <p class="font-mono text-xs mb-4" style="color: var(--color-gold);">/swe/projects</p>
+    <h1 class="font-serif text-6xl font-black" style="color: var(--color-paper);">Projects</h1>
+  </section>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-px" style="background-color: var(--color-ink-mid);">
+    {projects.map((project) => (
+      <a
+        href={`/swe/projects/${project.slug}`}
+        class="flex flex-col justify-between p-8 transition-colors duration-200 hover:bg-[var(--color-ink-soft)]"
+        style="background-color: var(--color-ink);"
+      >
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs" style="color: var(--color-paper-dim);">{project.data.year}</span>
+            {project.data.featured && (
+              <span class="font-mono text-xs" style="color: var(--color-gold);">featured</span>
+            )}
+          </div>
+          <h2 class="font-serif text-2xl font-bold mb-3" style="color: var(--color-paper);">
+            {project.data.title}
+          </h2>
+          <p class="text-sm leading-relaxed mb-6" style="color: var(--color-paper-dim);">
+            {project.data.description}
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {project.data.tags.map((tag) => (
+            <span class="font-mono text-xs px-2 py-1 border" style="border-color: var(--color-ink-mid); color: var(--color-paper-dim);">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </a>
+    ))}
+  </div>
+</SWELayout>

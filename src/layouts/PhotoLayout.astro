@@ -1,0 +1,58 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  fullBleed?: boolean;
+}
+
+const { title, description, ogImage, fullBleed = false } = Astro.props;
+const fullTitle = `${title} — pkopoku / photos`;
+---
+
+<BaseLayout title={fullTitle} description={description} ogImage={ogImage}>
+  <div class="min-h-screen flex flex-col">
+    <!-- Nav -->
+    <nav
+      class="sticky top-0 z-50 border-b"
+      style="border-color: var(--color-ink-mid); background-color: var(--color-ink);"
+    >
+      <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+        <a href="/photos" class="font-serif text-lg italic" style="color: var(--color-paper);">
+          pkopoku / photos
+        </a>
+        <div class="flex items-center gap-6">
+          <a href="/photos" class="font-mono text-sm transition-colors" style="color: var(--color-paper-dim);">
+            collections
+          </a>
+          <a
+            href="/swe"
+            class="font-mono text-xs px-3 py-1 border transition-colors"
+            style="border-color: var(--color-ink-mid); color: var(--color-paper-dim);"
+          >
+            work →
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main class={`flex-1 ${fullBleed ? '' : 'max-w-7xl mx-auto w-full px-6 py-12'}`}>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t py-6 px-6" style="border-color: var(--color-ink-mid);">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <span class="font-mono text-xs" style="color: var(--color-paper-dim);">
+          © {new Date().getFullYear()} pkopoku
+        </span>
+        <a href="/photos" class="font-mono text-xs" style="color: var(--color-paper-dim);">
+          all collections
+        </a>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>

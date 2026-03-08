@@ -1,0 +1,14 @@
+{
+  "title": "Portraits",
+  "slug": "portraits",
+  "description": "People — faces pulled from darkness, character in every shadow.",
+  "coverImage": "/photos/portraits/cover.jpg",
+  "order": 2,
+  "photos": [
+    {
+      "src": "/photos/portraits/01.jpg",
+      "alt": "Portrait with dramatic side lighting",
+      "aspectRatio": "portrait"
+    }
+  ]
+}

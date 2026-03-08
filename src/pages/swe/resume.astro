@@ -1,0 +1,84 @@
+---
+import SWELayout from '../../layouts/SWELayout.astro';
+---
+
+<SWELayout title="Résumé" description="Experience, skills, and background.">
+  <section class="mb-16">
+    <p class="font-mono text-xs mb-4" style="color: var(--color-gold);">/swe/resume</p>
+    <h1 class="font-serif text-6xl font-black mb-4" style="color: var(--color-paper);">Résumé</h1>
+    <a
+      href="/resume.pdf"
+      class="font-mono text-xs px-4 py-2 border inline-block transition-colors hover:bg-[var(--color-gold)] hover:text-[var(--color-ink)] hover:border-[var(--color-gold)]"
+      style="border-color: var(--color-paper-dim); color: var(--color-paper-dim);"
+    >
+      download PDF ↓
+    </a>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Experience -->
+  <section class="mb-20">
+    <h2 class="font-mono text-xs uppercase tracking-widest mb-10" style="color: var(--color-paper-dim);">
+      Experience
+    </h2>
+
+    <div class="flex flex-col gap-12">
+      <!-- Placeholder role — fill in your own -->
+      <div class="grid grid-cols-[1fr_auto] gap-8">
+        <div>
+          <h3 class="font-serif text-2xl font-bold mb-1" style="color: var(--color-paper);">
+            Senior Software Engineer
+          </h3>
+          <p class="font-mono text-sm mb-4" style="color: var(--color-gold);">Company Name</p>
+          <ul class="flex flex-col gap-2">
+            <li class="text-sm leading-relaxed" style="color: var(--color-paper-dim);">
+              — Describe a key responsibility or achievement here.
+            </li>
+            <li class="text-sm leading-relaxed" style="color: var(--color-paper-dim);">
+              — Another impactful bullet point.
+            </li>
+          </ul>
+        </div>
+        <span class="font-mono text-xs shrink-0 pt-1" style="color: var(--color-paper-dim);">
+          2022 – present
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Skills -->
+  <section class="mb-20">
+    <h2 class="font-mono text-xs uppercase tracking-widest mb-10" style="color: var(--color-paper-dim);">
+      Skills
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-px" style="background-color: var(--color-ink-mid);">
+      {['Languages', 'Frameworks', 'Infrastructure', 'Databases', 'Tools', 'Other'].map((category) => (
+        <div class="p-6" style="background-color: var(--color-ink);">
+          <p class="font-mono text-xs mb-3" style="color: var(--color-gold);">{category}</p>
+          <p class="text-sm" style="color: var(--color-paper-dim);">Add your skills here</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Education -->
+  <section>
+    <h2 class="font-mono text-xs uppercase tracking-widest mb-10" style="color: var(--color-paper-dim);">
+      Education
+    </h2>
+    <div class="grid grid-cols-[1fr_auto] gap-8">
+      <div>
+        <h3 class="font-serif text-2xl font-bold mb-1" style="color: var(--color-paper);">
+          Degree, Field of Study
+        </h3>
+        <p class="font-mono text-sm" style="color: var(--color-gold);">University Name</p>
+      </div>
+      <span class="font-mono text-xs shrink-0 pt-1" style="color: var(--color-paper-dim);">Year</span>
+    </div>
+  </section>
+</SWELayout>

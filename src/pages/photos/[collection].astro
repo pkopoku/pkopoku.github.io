@@ -1,0 +1,136 @@
+---
+import PhotoLayout from '../../layouts/PhotoLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const collections = await getCollection('collections');
+  return collections.map((col) => ({
+    params: { collection: col.data.slug },
+    props: { col },
+  }));
+}
+
+const { col } = Astro.props;
+const { title, description, coverImage, photos } = col.data;
+---
+
+<PhotoLayout title={title} description={description} ogImage={coverImage} fullBleed={true}>
+  <!-- Header (not full-bleed) -->
+  <div class="max-w-7xl mx-auto px-6 pt-12 pb-10">
+    <a href="/photos" class="font-mono text-xs block mb-10" style="color: var(--color-paper-dim);">
+      ← all collections
+    </a>
+    <div class="flex items-end justify-between">
+      <div>
+        <p class="font-mono text-xs mb-3" style="color: var(--color-gold);">collection</p>
+        <h1 class="font-serif text-6xl md:text-8xl font-black italic leading-none" style="color: var(--color-paper);">
+          {title}
+        </h1>
+      </div>
+      <span class="font-mono text-xs pb-3" style="color: var(--color-paper-dim);">
+        {String(photos.length).padStart(2, '0')} photos
+      </span>
+    </div>
+    {description && (
+      <p class="font-mono text-sm mt-6 max-w-lg" style="color: var(--color-paper-dim);">
+        {description}
+      </p>
+    )}
+  </div>
+
+  <!-- Masonry-style grid -->
+  <div class="px-px" style="background-color: var(--color-ink-mid);">
+    <div class="columns-1 sm:columns-2 lg:columns-3 gap-px">
+      {photos.map((photo) => (
+        <div
+          class="break-inside-avoid mb-px relative overflow-hidden group cursor-zoom-in"
+          data-src={photo.src}
+          data-alt={photo.alt}
+        >
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            loading="lazy"
+            class="w-full block transition-opacity duration-300 group-hover:opacity-75"
+            style={
+              photo.aspectRatio === 'portrait'
+                ? 'aspect-ratio: 2/3; object-fit: cover;'
+                : photo.aspectRatio === 'square'
+                ? 'aspect-ratio: 1/1; object-fit: cover;'
+                : 'aspect-ratio: 3/2; object-fit: cover;'
+            }
+          />
+          {photo.caption && (
+            <div
+              class="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style="background: linear-gradient(to top, rgba(14,14,14,0.85), transparent);"
+            >
+              <p class="font-mono text-xs" style="color: var(--color-paper-dim);">{photo.caption}</p>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div
+    id="lightbox"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 cursor-zoom-out"
+    style="background-color: rgba(14,14,14,0.96);"
+    role="dialog"
+    aria-modal="true"
+  >
+    <button
+      id="lightbox-close"
+      class="absolute top-6 right-6 font-mono text-xs"
+      style="color: var(--color-paper-dim);"
+      aria-label="Close"
+    >
+      close ✕
+    </button>
+    <img
+      id="lightbox-img"
+      src=""
+      alt=""
+      class="max-h-[90vh] max-w-[90vw] object-contain"
+    />
+    <p id="lightbox-caption" class="absolute bottom-6 left-0 right-0 text-center font-mono text-xs" style="color: var(--color-paper-dim);"></p>
+  </div>
+</PhotoLayout>
+
+<script>
+  const lightbox = document.getElementById('lightbox')!;
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxCaption = document.getElementById('lightbox-caption')!;
+  const closeBtn = document.getElementById('lightbox-close')!;
+
+  document.querySelectorAll('[data-src]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const src = el.getAttribute('data-src')!;
+      const alt = el.getAttribute('data-alt') || '';
+      const caption = el.querySelector('p')?.textContent || '';
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightboxCaption.textContent = caption;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  const closeLightbox = () => {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  };
+
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>

@@ -1,0 +1,95 @@
+---
+import SWELayout from '../../layouts/SWELayout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const posts = (await getCollection('writing'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<SWELayout title="Work" description="Software engineering — projects, writing, and more.">
+  <!-- Hero -->
+  <section class="mb-24">
+    <p class="font-mono text-xs mb-6" style="color: var(--color-gold);">software engineer</p>
+    <h1 class="font-serif text-6xl md:text-8xl font-black leading-none mb-8" style="color: var(--color-paper);">
+      Building<br /><em>things</em><br />that work.
+    </h1>
+    <p class="max-w-xl text-lg leading-relaxed" style="color: var(--color-paper-dim);">
+      I design and engineer software — systems, interfaces, tools. Here's a selection of my work.
+    </p>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Featured Projects -->
+  <section class="mb-24">
+    <div class="flex items-baseline justify-between mb-10">
+      <h2 class="font-mono text-xs uppercase tracking-widest" style="color: var(--color-paper-dim);">
+        Featured Projects
+      </h2>
+      <a href="/swe/projects" class="font-mono text-xs" style="color: var(--color-gold);">all projects →</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px" style="background-color: var(--color-ink-mid);">
+      {projects.map((project) => (
+        <a
+          href={`/swe/projects/${project.slug}`}
+          class="flex flex-col justify-between p-8 transition-colors duration-200 hover:bg-[var(--color-ink-soft)]"
+          style="background-color: var(--color-ink);"
+        >
+          <div>
+            <h3 class="font-serif text-2xl font-bold mb-3" style="color: var(--color-paper);">
+              {project.data.title}
+            </h3>
+            <p class="text-sm leading-relaxed mb-6" style="color: var(--color-paper-dim);">
+              {project.data.description}
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {project.data.tags.map((tag) => (
+              <span class="font-mono text-xs px-2 py-1 border" style="border-color: var(--color-ink-mid); color: var(--color-paper-dim);">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Recent Writing -->
+  {posts.length > 0 && (
+    <section>
+      <div class="flex items-baseline justify-between mb-10">
+        <h2 class="font-mono text-xs uppercase tracking-widest" style="color: var(--color-paper-dim);">
+          Recent Writing
+        </h2>
+        <a href="/swe/writing" class="font-mono text-xs" style="color: var(--color-gold);">all posts →</a>
+      </div>
+
+      <div class="flex flex-col divide-y" style="border-color: var(--color-ink-mid);">
+        {posts.map((post) => (
+          <a
+            href={`/swe/writing/${post.slug}`}
+            class="flex items-baseline justify-between py-6 transition-colors duration-200 hover:text-[var(--color-paper)]"
+            style="color: var(--color-paper-dim);"
+          >
+            <h3 class="font-serif text-xl font-bold" style="color: var(--color-paper);">
+              {post.data.title}
+            </h3>
+            <span class="font-mono text-xs shrink-0 ml-8">
+              {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+</SWELayout>

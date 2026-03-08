@@ -1,0 +1,54 @@
+---
+import PhotoLayout from '../../layouts/PhotoLayout.astro';
+import { getCollection } from 'astro:content';
+
+const collections = (await getCollection('collections'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<PhotoLayout title="Photos" description="Photography by pkopoku — concerts, portraits, travel.">
+  <!-- Hero text -->
+  <section class="mb-16">
+    <h1 class="font-serif text-6xl md:text-8xl font-black italic leading-none mb-4" style="color: var(--color-paper);">
+      Photos
+    </h1>
+    <p class="font-mono text-sm max-w-sm" style="color: var(--color-paper-dim);">
+      Light and shadow — a chiaroscuro approach to the world.
+    </p>
+  </section>
+
+  <!-- Collections grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style="background-color: var(--color-ink-mid);">
+    {collections.map((col) => (
+      <a
+        href={`/photos/${col.data.slug}`}
+        class="group relative overflow-hidden aspect-[4/3] block"
+        style="background-color: var(--color-ink-soft);"
+      >
+        <!-- Cover image -->
+        <img
+          src={col.data.coverImage}
+          alt={col.data.title}
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-60"
+          loading="lazy"
+        />
+
+        <!-- Overlay -->
+        <div
+          class="absolute inset-0 flex flex-col justify-end p-6"
+          style="background: linear-gradient(to top, rgba(14,14,14,0.9) 0%, rgba(14,14,14,0.2) 60%, transparent 100%);"
+        >
+          <span class="font-mono text-xs mb-2" style="color: var(--color-gold);">
+            {String(col.data.photos.length).padStart(2, '0')} photos
+          </span>
+          <h2 class="font-serif text-3xl font-bold" style="color: var(--color-paper);">
+            {col.data.title}
+          </h2>
+          <p class="font-mono text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color: var(--color-paper-dim);">
+            {col.data.description}
+          </p>
+        </div>
+      </a>
+    ))}
+  </div>
+</PhotoLayout>

@@ -1,0 +1,14 @@
+{
+  "title": "Travel",
+  "slug": "travel",
+  "description": "Places — light and shadow in landscapes near and far.",
+  "coverImage": "/photos/travel/cover.jpg",
+  "order": 3,
+  "photos": [
+    {
+      "src": "/photos/travel/01.jpg",
+      "alt": "Street scene with strong directional light",
+      "aspectRatio": "landscape"
+    }
+  ]
+}

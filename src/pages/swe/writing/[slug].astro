@@ -1,0 +1,89 @@
+---
+import SWELayout from '../../../layouts/SWELayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('writing');
+  return posts
+    .filter((p) => !p.data.draft)
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<SWELayout title={post.data.title} description={post.data.description}>
+  <a href="/swe/writing" class="font-mono text-xs block mb-16" style="color: var(--color-paper-dim);">
+    ← writing
+  </a>
+
+  <header class="mb-16 max-w-2xl">
+    <p class="font-mono text-xs mb-4" style="color: var(--color-paper-dim);">
+      {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+    </p>
+    <h1 class="font-serif text-5xl md:text-6xl font-black leading-tight mb-6" style="color: var(--color-paper);">
+      {post.data.title}
+    </h1>
+    <p class="text-lg leading-relaxed" style="color: var(--color-paper-dim);">
+      {post.data.description}
+    </p>
+  </header>
+
+  <hr class="section-divider" />
+
+  <article class="prose-custom max-w-2xl">
+    <Content />
+  </article>
+</SWELayout>
+
+<style>
+  .prose-custom :global(h2) {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-paper);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  .prose-custom :global(h3) {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-paper);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-custom :global(p) {
+    color: var(--color-paper-dim);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+  .prose-custom :global(a) {
+    color: var(--color-gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-custom :global(blockquote) {
+    border-left: 2px solid var(--color-gold);
+    padding-left: 1.5rem;
+    margin-left: 0;
+    color: var(--color-paper-dim);
+    font-style: italic;
+  }
+  .prose-custom :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background-color: var(--color-ink-soft);
+    padding: 0.15em 0.4em;
+  }
+  .prose-custom :global(pre) {
+    background-color: var(--color-ink-soft);
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+</style>
