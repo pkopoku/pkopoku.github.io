@@ -94,19 +94,14 @@ const skills = [
           <!-- Roles -->
           <div class="flex flex-col gap-10 pl-0 md:pl-4">
             {place.roles.map((role) => (
-              <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-2 md:gap-8">
-                <div>
-                  <p class="font-mono text-xs mb-3" style="color: var(--color-gold);">{role.title}</p>
-                  <ul class="flex flex-col gap-3">
-                    <li class="text-sm leading-relaxed pl-4 border-l" style="color: var(--color-paper-dim); border-color: var(--color-ink-mid);">
-                      {role.responsibility}
-                    </li>
-                    <li class="text-sm leading-relaxed pl-4 border-l" style="color: var(--color-paper); border-color: var(--color-gold);" set:html={role.impact} />
-                  </ul>
-                </div>
-                <span class="font-mono text-xs shrink-0 md:pt-0.5" style="color: var(--color-paper-dim);">
-                  {role.period}
-                </span>
+              <div>
+                <p class="font-mono text-xs mb-3" style="color: var(--color-gold);">{role.title}</p>
+                <ul class="flex flex-col gap-3">
+                  <li class="text-sm leading-relaxed pl-4 border-l" style="color: var(--color-paper-dim); border-color: var(--color-ink-mid);">
+                    {role.responsibility}
+                  </li>
+                  <li class="text-sm leading-relaxed pl-4 border-l" style="color: var(--color-paper); border-color: var(--color-gold);" set:html={role.impact} />
+                </ul>
               </div>
             ))}
           </div>
@@ -144,26 +139,20 @@ const skills = [
       Education
     </h2>
     <div class="flex flex-col gap-8">
-      <div class="grid grid-cols-[1fr_auto] gap-8 items-start">
-        <div>
-          <h3 class="font-serif text-2xl font-bold mb-1" style="color: var(--color-paper);">
-            Master of Data Science
-          </h3>
-          <p class="font-mono text-xs mb-2" style="color: var(--color-gold);">Lancaster University</p>
-          <p class="text-sm" style="color: var(--color-paper-dim);">Optimising energy systems — predicting room temperature to prevent costly low-to-high heating gradients across campus.</p>
-        </div>
-        <span class="font-mono text-xs shrink-0 pt-1" style="color: var(--color-paper-dim);">2016 – 2017</span>
+      <div>
+        <h3 class="font-serif text-2xl font-bold mb-1" style="color: var(--color-paper);">
+          Master of Data Science
+        </h3>
+        <p class="font-mono text-xs mb-2" style="color: var(--color-gold);">Lancaster University</p>
+        <p class="text-sm" style="color: var(--color-paper-dim);">Optimising energy systems — predicting room temperature to prevent costly low-to-high heating gradients across campus.</p>
       </div>
 
-      <div class="grid grid-cols-[1fr_auto] gap-8 items-start">
-        <div>
-          <h3 class="font-serif text-2xl font-bold mb-1" style="color: var(--color-paper);">
-            Bachelor of Computer Science
-          </h3>
-          <p class="font-mono text-xs mb-2" style="color: var(--color-gold);">Kwame Nkrumah University of Science and Technology</p>
-          <p class="text-sm" style="color: var(--color-paper-dim);">Building for screens — web and mobile application development, from first principles to shipped product.</p>
-        </div>
-        <span class="font-mono text-xs shrink-0 pt-1" style="color: var(--color-paper-dim);">2009 – 2013</span>
+      <div>
+        <h3 class="font-serif text-2xl font-bold mb-1" style="color: var(--color-paper);">
+          Bachelor of Computer Science
+        </h3>
+        <p class="font-mono text-xs mb-2" style="color: var(--color-gold);">Kwame Nkrumah University of Science and Technology</p>
+        <p class="text-sm" style="color: var(--color-paper-dim);">Building for screens — web and mobile application development, from first principles to shipped product.</p>
       </div>
     </div>
   </section>
